@@ -7,6 +7,6 @@
         public required string Lastname { get; set; }
         public required string Email { get; set; }
         public int? Age { get; set; }
-        public List<StudentCoursesResponse> Courses { get; set; } = new();
+        public List<int> CoursesId { get; set; } = new();
     }
 }
