@@ -1,14 +1,13 @@
 ﻿using StudentManagmentApi.Models;
-using System.Text.Json.Serialization;
 
 namespace StudentManagmentApi.Dtos
 {
-    public class CourseResponse
+    public class CourseUpdateRequest
     {
         public int Id { get; set; }
         public required string Title { get; set; }
         public int Credit { get; set; }
 
-        public List<CourseStudentsResponse> Students { get; set; } = new();
+        public List<int> Students { get; set; } = new();
     }
 }

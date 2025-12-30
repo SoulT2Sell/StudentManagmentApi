@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddScoped<IStudentsServices, StudentsServices>();  
+builder.Services.AddScoped<ICoursesServices, CoursesServices>();
 
 builder.Services.AddDbContext<AppDbContext>(options => 
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
