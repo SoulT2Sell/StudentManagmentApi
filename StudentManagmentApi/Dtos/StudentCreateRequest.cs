@@ -1,11 +1,14 @@
-﻿namespace StudentManagmentApi.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+namespace StudentManagmentApi.Dtos
 {
-    public class StudentCreateRequest
-    {
-        public required string Firstname { get; set; }
-        public required string Lastname { get; set; }
-        public required string Email { get; set; }
-        public int? Age { get; set; }
-        public List<int> CoursesId { get; set; } = new();
-    }
+    public record StudentCreateRequest(
+            [Required, MinLength(1)]
+            string Firstname,
+            [Required, MinLength(1)]
+            string Lastname,
+            [Required, EmailAddress]
+            string Email,
+            int? Age,
+            List<int>? CoursesId
+        );
 }

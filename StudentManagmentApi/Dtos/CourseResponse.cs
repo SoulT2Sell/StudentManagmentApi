@@ -1,14 +1,9 @@
-﻿using StudentManagmentApi.Models;
-using System.Text.Json.Serialization;
-
-namespace StudentManagmentApi.Dtos
+﻿namespace StudentManagmentApi.Dtos
 {
-    public class CourseResponse
-    {
-        public int Id { get; set; }
-        public required string Title { get; set; }
-        public int Credit { get; set; }
-
-        public List<CourseStudentsResponse> Students { get; set; } = new();
-    }
+    public record CourseResponse(
+            int Id,
+            string Title,
+            int Credit,
+            List<CourseStudentsResponse>? Students
+        );
 }

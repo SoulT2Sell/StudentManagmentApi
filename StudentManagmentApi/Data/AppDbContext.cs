@@ -10,6 +10,14 @@ namespace StudentManagmentApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Course>()
+                .Property(c => c.Title)
+                .IsRequired();
+
+            modelBuilder.Entity<Course>()
+                .HasIndex(c => c.Title)
+                .IsUnique();
+
             modelBuilder.Entity<Student>(entity =>
             {
                 entity.HasIndex(s => s.Email)

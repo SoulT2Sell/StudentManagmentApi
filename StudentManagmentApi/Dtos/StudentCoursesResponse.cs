@@ -1,11 +1,8 @@
-﻿using StudentManagmentApi.Models;
-
-namespace StudentManagmentApi.Dtos
+﻿namespace StudentManagmentApi.Dtos
 {
-    public class StudentCoursesResponse
-    {
-        public int Id { get; set; }
-        public required string Title { get; set; }
-        public int Credit { get; set; }
-    }
+    public record StudentCoursesResponse(
+            int Id,
+            string Title,
+            int Credit
+        );
 }

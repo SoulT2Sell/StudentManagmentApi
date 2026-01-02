@@ -9,39 +9,40 @@ namespace StudentManagmentApi.Services
     {
         public async Task<List<StudentResponse>> GetAllStudentsAsync()
             => await context.Students
-                .Select(s => new StudentResponse
-                {
-                    Id = s.Id,
-                    Firstname = s.Firstname,
-                    Lastname = s.Lastname,
-                    Email = s.Email,
-                    Age = s.Age,
-                    Courses = s.Courses.Select(c => new StudentCoursesResponse
-                    {
-                        Id = c.Id,
-                        Title = c.Title,
-                        Credit = c.Credit,
-                    }).ToList()
-                })
+                .Select(s => new StudentResponse(
+                        s.Id,
+                        s.Firstname,
+                        s.Lastname,
+                        s.Email,
+                        s.Age,
+                        s.Courses.Select(c => new StudentCoursesResponse(
+                                c.Id,
+                                c.Title,
+                                c.Credit
+                            )
+                        
+                        ).ToList()
+                    )
+                )
                 .ToListAsync();
         public async Task<StudentResponse> GetStudentByIdAsync(int id)
         {
             var student = await context.Students
                 .Where(s => s.Id == id)
-                .Select(s => new StudentResponse
-                {
-                    Id = s.Id,
-                    Firstname = s.Firstname,
-                    Lastname = s.Lastname,
-                    Email = s.Email,
-                    Age = s.Age,
-                    Courses = s.Courses.Select(c => new StudentCoursesResponse
-                    {
-                        Id = c.Id,
-                        Title = c.Title,
-                        Credit = c.Credit,
-                    }).ToList()
-                }).FirstOrDefaultAsync();
+                .Select(s => new StudentResponse(
+                        s.Id,
+                        s.Firstname,
+                        s.Lastname,
+                        s.Email,
+                        s.Age,
+                        s.Courses.Select(c => new StudentCoursesResponse(
+                                c.Id,
+                                c.Title,
+                                c.Credit
+                            )
+                        ).ToList()
+                    )
+                ).FirstOrDefaultAsync();
 
             return student;
         }
@@ -66,21 +67,20 @@ namespace StudentManagmentApi.Services
             context.Students.Add(newStudent);
             await context.SaveChangesAsync();
 
-            return new StudentResponse
-            {
-                Id = newStudent.Id,
-                Firstname = newStudent.Firstname,
-                Lastname = newStudent.Lastname,
-                Email = newStudent.Email,
-                Age = newStudent.Age,
-                Courses = newStudent.Courses
-                    .Select(c => new StudentCoursesResponse
-                    {
-                        Id = c.Id,
-                        Title = c.Title,
-                        Credit = c.Credit,
-                    }).ToList(),
-            };
+            return new StudentResponse(
+                newStudent.Id,
+                newStudent.Firstname,
+                newStudent.Lastname,
+                newStudent.Email,
+                newStudent.Age,
+                newStudent.Courses
+                    .Select(c => new StudentCoursesResponse(
+                            c.Id,
+                            c.Title,
+                            c.Credit
+                        )   
+                    ).ToList()
+            );
         }
         public async Task<int> UpdateStudentAsync(int id, StudentUpdateRequest newStudent)
         {

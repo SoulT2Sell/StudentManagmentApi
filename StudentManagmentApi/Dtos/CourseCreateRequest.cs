@@ -1,12 +1,11 @@
-﻿using StudentManagmentApi.Models;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace StudentManagmentApi.Dtos
 {
-    public class CourseCreateRequest
-    {
-        public required string Title { get; set; }
-        public int Credit { get; set; }
-
-        public List<int> Students { get; set; } = new();
-    }
+    public record CourseCreateRequest(
+            [Required, MinLength(1)]
+            string Title,
+            [Required]
+            int Credit,
+            List<int>? Students
+        );
 }
