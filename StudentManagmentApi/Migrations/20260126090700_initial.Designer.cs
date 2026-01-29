@@ -11,8 +11,8 @@ using StudentManagmentApi.Data;
 namespace StudentManagmentApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260102121204_testing_EF_constrains")]
-    partial class testing_EF_constrains
+    [Migration("20260126090700_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

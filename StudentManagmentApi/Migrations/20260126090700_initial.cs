@@ -16,7 +16,7 @@ namespace StudentManagmentApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Credit = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -63,6 +63,12 @@ namespace StudentManagmentApi.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_Title",
+                table: "Courses",
+                column: "Title",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseStudent_StudentsId",
