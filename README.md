@@ -1,2 +1,2 @@
 # StudentManagmentApi
-Simple .net Api Project For Resume
+Simple .net Api Project
