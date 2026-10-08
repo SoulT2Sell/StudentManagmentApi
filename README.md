@@ -1,2 +1,2 @@
 # StudentManagmentApi
-Simple .net Api Project
+a .net Api Project for student management
